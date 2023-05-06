@@ -3,14 +3,14 @@ using ereditarycode.console;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 
-var name = "Supreme";
-var surname = "Entity";
+var name = "";
+var surname = "";
 var namemother = "";
-var parentalbond = "Ultron Legacy";
-var parental = 100;
+var parentalbond = "";
+var parental = 0;
 
-var swtch = "supreme";
-var findNumberOfParental = 100;
+var swtch = "";
+var findNumberOfParental = 0;
 
 switch (swtch)
 {
@@ -32,7 +32,7 @@ switch (swtch)
     case "fatherANDmother":
         using (var context = new Eredity())
         {
-            var db = new OriginalFatherAndMother()
+            var db = new FaterAndMother()
             {
                 OriginalFatherCompleteName = name + " " + surname,
                 OriginalMotherCompleteSurname = namemother,
@@ -45,7 +45,7 @@ switch (swtch)
     case "childrenOfFatherAndMother":
         using (var context = new Eredity())
         {
-            var db = new OriginalFatherAndMotherChildren()
+            var db = new FatherAndMotherChildren()
             {
                 Name = name,
                 Surname = surname,
@@ -60,7 +60,7 @@ switch (swtch)
     case "wifes":
         using (var context = new Eredity())
         {
-            var db = new OriginalWifeFromOtherFamily()
+            var db = new WifesOfChildrenOfFatherAndMother()
             {
                 Name = name,
                 Surname = surname,
@@ -75,7 +75,7 @@ switch (swtch)
     case "HousbandAndWife":
         using (var context = new Eredity())
         {
-            var db = new OriginalHousbandAndWifeFromOriginalFatherAndMother()
+            var db = new FirstGenerationWifesOfChildrenOfFamily()
             {
                 Name = name,
                 Surname = surname,
@@ -90,7 +90,7 @@ switch (swtch)
     case "orgnlChildrenFromFamilyHousbandAndWife":
         using (var context = new Eredity())
         {
-            var db = new OriginalChildOfHousbandAndWifeFromOriginalFatherAndMother()
+            var db = new FirstGenerationHousbandAndWife()
             {
                 Name = name,
                 Surname = surname,
@@ -98,14 +98,14 @@ switch (swtch)
                 ParentalBond = parentalbond
 
             };
-            context.OriginalChildrenFromHousbandAndWife.Add(db);
-            context.SaveChangesAsync();
+            context?.ChildrenFromHousbandAndWife?.Add(db);
+            context?.SaveChangesAsync();
         }
         break;
     case "originalHousbandAndWifeChildrenFromFamily":
         using (var context = new Eredity())
         {
-            var db = new OriginalChildOfHousbandAndWifeFromOriginalFatherAndMother()
+            var db = new FirstGenerationWifesOfChildrenOfFamily()
             {
                 Name = name,
                 Surname = surname,
@@ -113,7 +113,7 @@ switch (swtch)
                 ParentalBond = parentalbond
 
             };
-            context.OriginalChildrenFromHousbandAndWife.Add(db);
+            //context.OriginalChildrenFromHousbandAndWife.Add(db);
             context.SaveChangesAsync();
         }
         break;
@@ -122,7 +122,7 @@ switch (swtch)
         {
             var children = context?.HousbandAndWifeChildren?.Find(findNumberOfParental);
 
-            var db = new Children()
+            var db = new SecondGenerationChildrenOfFamily()
             {
                 Name = children?.Name,
                 Surname = children?.Surname,
@@ -161,7 +161,7 @@ switch (swtch)
         find = findcontext?.HousbandAndWifeChildren?.FindAsync(parental).Result.ToString();
         break;
     case "originalHousbandAndWifeChildrenFromFamily":
-        find = findcontext?.OriginalChildrenFromHousbandAndWife?.FindAsync(parental).Result.ToString();
+        find = findcontext?.ChildrenFromHousbandAndWife?.FindAsync(parental).Result.ToString();
         break;
     case "orgnlChildrenHousbandAndWifeFromOriginal":
         find = findcontext?.Children?.FindAsync(parental).Result.ToString();
