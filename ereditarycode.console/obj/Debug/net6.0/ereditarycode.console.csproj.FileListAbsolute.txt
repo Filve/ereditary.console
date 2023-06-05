@@ -95,5 +95,4 @@ C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\runtimes\win\
 C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\ereditarycode.console.csproj.CopyComplete
 C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\ereditarycode.console.genruntimeconfig.cache
 C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\ref\ereditarycode.console.dll
-C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\ereditarycode.console.Migrations.DbEredity.resources
-C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\ereditarycode.console.csproj.GenerateResource.cache
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\ereditarycode.console.dll.config
