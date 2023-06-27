@@ -7,20 +7,22 @@ namespace ereditarycode.console
     {
         public Eredity() : base("name=DbEredityString") { }
 
-        public DbSet<EredityModel> EredityModel { get; set; }
-        public DbSet<SupremeEntites> SupremeEntities { get; set; }
+        public DbSet<SupremeEntities> SupremeEntities { get; set; }
         public DbSet<FaterAndMother> FaterAndMother { get; set; }
-        public DbSet<FatherAndMotherChildren> FatherAndMotherChildren { get; set; }
-        public DbSet<WifesOfChildrenOfFatherAndMother> WifesOfChildrenOfFatherAndMother { get; set; }
+        public DbSet<Children> Children { get; set; }
+        public DbSet<Wifes> Wifes { get; set; }
         public DbSet<HousbandAndWifeOfFamily> HousbandAndWifeOfFamily { get; set; }
-        public DbSet<FirstGenerationChildrenOfFamily> FirstGenerationChildrenOfFamily { get; set; }
-        public DbSet<FirstGenerationWifesOfChildrenOfFamily> FirstGenerationWifesOfChildrenOfFamily { get; set; }
-        public DbSet<FirstGenerationHousbandAndWife> FirstGenerationHousbandAndWife { get; set; }
-        public DbSet<SecondGenerationChildrenOfFamily> SecondGenerationChildrenOfFamily { get; set; }
+        public DbSet<FamilyMembers> FamilyMembers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EredityModel>().MapToStoredProcedures();
+            modelBuilder.Entity<SupremeEntities>().MapToStoredProcedures();
+            modelBuilder.Entity<FaterAndMother>().MapToStoredProcedures();
+            modelBuilder.Entity<Children>().MapToStoredProcedures();
+            modelBuilder.Entity<Wifes>().MapToStoredProcedures();
+            modelBuilder.Entity<HousbandAndWifeOfFamily>().MapToStoredProcedures();
+            modelBuilder.Entity<FamilyMember>().MapToStoredProcedures();
+            modelBuilder.Entity<FamilyMembers>().MapToStoredProcedures();
         }
 
     }

@@ -1,27 +1,28 @@
-﻿namespace ereditarycode.console
+﻿
+namespace ereditarycode.console
 {
     public class EredityModel
     {
-        public int Id { get; set; }
-        public SupremeEntites SupremeEntity { get; set; }
+        public SupremeEntities SupremeEntity { get; set; }
         public FaterAndMother FatherAndMother { get; set; }
-        public FatherAndMotherChildren FatherAndMotherChildren { get; set; }
-        public WifesOfChildrenOfFatherAndMother WifesOfChildrenOfFatherAndMother { get; set; }
+        public Children Children { get; set; }
+        public Wifes Wifes { get; set; }
         public HousbandAndWifeOfFamily HousbandAndWifeOfFamily { get; set; }
-        public FirstGenerationChildrenOfFamily FirstGenerationChildrenOfFamily { get; set; }
-        public FirstGenerationWifesOfChildrenOfFamily FirstGenerationWifesOfChildrenOfFamily { get; set; }
-        public FirstGenerationHousbandAndWife FirstGenerationHousbandAndWife { get; set; }
-        public SecondGenerationChildrenOfFamily SecondGenerationChildrenOfFamily { get; set; }
+        public FamilyMembers FamilyMember { get; set; }
+        public FamilyMember FamilyMembers { get; set; }
 
     }
 
-    public class SupremeEntites
+    public class SupremeEntities
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string ParentalBond { get; set; }
-        public int ParentalCode { get; set; }
+        public int IndividualCode { get; set; }
+        public string ParentalBond { get => ParentalBond; set => ParentalBond = ParentalCode != 0 ? ParentalCode.ToString() : string.Empty; }
+        public int ParentalCode { get => ParentalCode; set => AutoIncrementalGuild.AutoIncremental(ParentalCode); }
+        public int ParentalConnectionCode { set => ParentalConnectionCode = ParentalBond != null ? ParentalCode * Convert.ToInt32(ParentalBond) : 0; }
+        public DateTime CreationDate { get => CreationDate; set => CreationDate = ParentalCode != 0 || ParentalBond != string.Empty ? DateTime.UtcNow : DateTime.MinValue; }
 
     }
 
@@ -30,19 +31,25 @@
         public int Id { get; set; }
         public string FatherCompleteName { get; set; }
         public string MotherCompleteName { get; set; }
+        public int IndividualCode { get; set; }
         public int ParentalCode { get; set; }
-        public string ParentalBond { get; set; }
-
+        public string ParentalBond { get => ParentalBond; set => ParentalBond = ParentalCode != 0 ? ParentalCode.ToString() : string.Empty; }
+        public int ParentalConnectionCode { set => ParentalConnectionCode = ParentalBond != null ? ParentalCode * Convert.ToInt32(ParentalBond) : 0; }
+        public DateTime CreationDate { get => CreationDate; set => CreationDate = ParentalCode != 0 || ParentalBond != string.Empty ? DateTime.UtcNow : DateTime.MinValue; }
 
     }
 
-    public class FatherAndMotherChildren
+    public class Children
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string ParentalBond { get; set; }
+        public int IndividualCode { get; set; }
         public int ParentalCode { get; set; }
+        public string ParentalBond { get => ParentalBond; set => ParentalBond = ParentalCode != 0 ? ParentalCode.ToString() : string.Empty; }
+        public int ParentalConnectionCode { set => ParentalConnectionCode = ParentalBond != null ? ParentalCode * Convert.ToInt32(ParentalBond) : 0; }
+        public DateTime CreationDate { get => CreationDate; set => CreationDate = ParentalCode != 0 || ParentalBond != string.Empty ? DateTime.UtcNow : DateTime.MinValue; }
+
 
 
     }
@@ -53,58 +60,48 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string ParentalBond { get; set; }
         public int ParentalCode { get; set; }
-
-
+        public int IndividualCode { get; set; }
+        public string ParentalBond { get => ParentalBond; set => ParentalBond = ParentalCode != 0 ? ParentalCode.ToString() : string.Empty; }
+        public int ParentalConnectionCode { set => ParentalConnectionCode = ParentalBond != null ? ParentalCode * Convert.ToInt32(ParentalBond) : 0; }
+        public DateTime CreationDate { get => CreationDate; set => CreationDate = ParentalCode != 0 || ParentalBond != string.Empty ? DateTime.UtcNow : DateTime.MinValue; }
 
     }
 
-    public class FirstGenerationChildrenOfFamily
+    public class FamilyMember
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string ParentalBond { get; set; }
         public int ParentalCode { get; set; }
-    }
-
-    public class FirstGenerationWifesOfChildrenOfFamily
+        public int IndividualCode { get; set; }
+        public string ParentalBond { get => ParentalBond; set => ParentalBond = ParentalCode != 0 ? ParentalCode.ToString() : string.Empty; }
+        public int ParentalConnectionCode { set => ParentalConnectionCode = ParentalBond != null ? ParentalCode * Convert.ToInt32(ParentalBond) : 0; }
+        public DateTime CreationDate { get => CreationDate; set => CreationDate = ParentalCode != 0 || ParentalBond != string.Empty ? DateTime.UtcNow : DateTime.MinValue; }
+    }   
+    
+    public class FamilyMembers
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string ParentalBond { get; set; }
         public int ParentalCode { get; set; }
+        public int IndividualCode { get; set; }
+        public string ParentalBond { get => ParentalBond; set => ParentalBond = ParentalCode != 0 ? ParentalCode.ToString() : string.Empty; }
+        public int ParentalConnectionCode { set => ParentalConnectionCode = ParentalBond != null ? ParentalCode * Convert.ToInt32(ParentalBond) : 0; }
+        public DateTime CreationDate { get => CreationDate; set => CreationDate = ParentalCode != 0 || ParentalBond != string.Empty ? DateTime.UtcNow : DateTime.MinValue; }
     }
 
-    public class WifesOfChildrenOfFatherAndMother
+    public class Wifes
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string ParentalBond { get; set; }
         public int ParentalCode { get; set; }
+        public int IndividualCode { get; set; }
+        public string ParentalBond { get => ParentalBond; set => ParentalBond = ParentalCode != 0 ? ParentalCode.ToString() : string.Empty; }
+        public int ParentalConnectionCode { set => ParentalConnectionCode = ParentalBond != null ? ParentalCode * Convert.ToInt32(ParentalBond) : 0; }
+        public DateTime CreationDate { get => CreationDate; set => CreationDate = ParentalCode != 0 || ParentalBond != string.Empty ? DateTime.UtcNow : DateTime.MinValue; }
 
-    }
-
-    public class FirstGenerationHousbandAndWife
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string ParentalBond { get; set; }
-        public int ParentalCode { get; set; }
-
-
-    }
-
-    public class SecondGenerationChildrenOfFamily
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string ParentalBond { get; set; }
-        public int ParentalCode { get; set; }
     }
 }
