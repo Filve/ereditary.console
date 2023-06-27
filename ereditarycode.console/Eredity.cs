@@ -13,6 +13,7 @@ namespace ereditarycode.console
         public DbSet<Wifes> Wifes { get; set; }
         public DbSet<HousbandAndWifeOfFamily> HousbandAndWifeOfFamily { get; set; }
         public DbSet<FamilyMembers> FamilyMembers { get; set; }
+        public DbSet<FamilyMember> FamilyMember { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
