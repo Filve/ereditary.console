@@ -1,9 +1,9 @@
 ﻿namespace ereditarycode.console
 {
-    public static class AutoIncrementalGuild
+    public static class IncrementalAndCheckFamilyMembers
     {
 
-        public static int AutoIncremental(int contextId)
+        public static int AutoIncrementalGuild(int contextId)
         {
             var context = new Eredity();
             var id = context?.FamilyMembers?.FindAsync(contextId).Result?.Id;
@@ -29,7 +29,7 @@
                 Surname = familyMember.Surname,
                 ParentalCode = familyMember.ParentalCode,
                 ParentalBond = familyMember.ParentalBond,
-                IndividualCode = AutoIncrementalGuild.AutoIncremental(searchIfExist.Value)
+                IndividualCode = AutoIncrementalGuild(searchIfExist.Value)
 
             };
             if (searchIfExist == null)
@@ -50,7 +50,7 @@
                 Surname = surname,
                 ParentalCode = parentalCode,
                 ParentalBond = parentalBond,
-                IndividualCode = AutoIncremental(searchIfExist.Value)
+                IndividualCode = AutoIncrementalGuild(searchIfExist.Value)
 
             };
             if (searchIfExist == null)
@@ -58,6 +58,7 @@
                 context.FamilyMembers.Add(familydb);
                 context.SaveChanges();
             }
+
 
             return familydb;
         }

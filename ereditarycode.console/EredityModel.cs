@@ -20,7 +20,7 @@ namespace ereditarycode.console
         public string Surname { get; set; }
         public int IndividualCode { get; set; }
         public string ParentalBond { get => ParentalBond; set => ParentalBond = ParentalCode != 0 ? ParentalCode.ToString() : string.Empty; }
-        public int ParentalCode { get => ParentalCode; set => AutoIncrementalGuild.AutoIncremental(ParentalCode); }
+        public int ParentalCode { get => ParentalCode; set => IncrementalAndCheckFamilyMembers.AutoIncrementalGuild(ParentalCode); }
         public int ParentalConnectionCode { set => ParentalConnectionCode = ParentalBond != null ? ParentalCode * Convert.ToInt32(ParentalBond) : 0; }
         public DateTime CreationDate { get => CreationDate; set => CreationDate = ParentalCode != 0 || ParentalBond != string.Empty ? DateTime.UtcNow : DateTime.MinValue; }
 
