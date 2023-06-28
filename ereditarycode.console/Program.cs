@@ -31,7 +31,7 @@ if (Console.ReadLine() != "SKIP")
     Console.WriteLine("Write name PARENTAL BOND like code in string for each family the same BOND, it will modify OR press enter to skip");
     var parentalbond = Console.ReadLine();
 
-    Console.WriteLine("Write put a number AND REMEMBER IT, just number it will be modify OR press enter to skip");
+    Console.WriteLine("Write a number, just number it will be modify OR press enter to skip");
     var parentalcode = Console.Read();
     findNumberOfParental = parentalcode;
 
@@ -48,7 +48,7 @@ if (Console.ReadLine() != "SKIP")
                     Surname = surname,
                     ParentalCode = parentalcode,
                     ParentalBond = parentalbond,
-                    IndividualCode = AutoIncrementalGuild.AutoIncremental(parentalcode)
+                    IndividualCode = IncrementalAndCheckFamilyMembers.AutoIncrementalGuild(parentalcode)
 
                 };
 
@@ -66,24 +66,7 @@ if (Console.ReadLine() != "SKIP")
                 Console.WriteLine(searchIfExist.Value);
                 var familySearch = context?.FamilyMembers?.FindAsync(parentalcode)?.Result?.IndividualCode;
 
-                var familydb = new FamilyMembers()
-                {
-                    Name = name,
-                    Surname = surname,
-                    ParentalCode = parentalcode,
-                    ParentalBond = parentalbond,
-                    IndividualCode = searchIfExist.Value
-
-                };
-
-
-                if (searchIfExist == null)
-                {
-                    context.FamilyMembers.Add(familydb);
-                    context.SaveChanges();
-                }
-                else
-                    Console.WriteLine("Already Exist in Family Member");
+                IncrementalAndCheckFamilyMembers.AddFamilyMembersInDb(parentalcode, name, surname, parentalbond);
 
             }
             break;
@@ -102,7 +85,7 @@ if (Console.ReadLine() != "SKIP")
                     MotherCompleteName = namemother + " " + surnamemother,
                     ParentalBond = parentalbond,
                     ParentalCode = parentalcode,
-                    IndividualCode = AutoIncrementalGuild.AutoIncremental(parentalcode)
+                    IndividualCode = IncrementalAndCheckFamilyMembers.AutoIncrementalGuild(parentalcode)
 
                 };
 
@@ -115,20 +98,7 @@ if (Console.ReadLine() != "SKIP")
                     Console.WriteLine("Already Exist Parental Code");
                 searchIfExist = context?.FaterAndMother?.FindAsync(parentalcode).Result?.Id;
                 var familyfatherSearch = context?.FamilyMembers?.FindAsync(parentalcode)?.Result?.IndividualCode;
-                var familydb = new FamilyMembers()
-                {
-                    Name = name,
-                    Surname = surname,
-                    ParentalCode = parentalcode,
-                    ParentalBond = parentalbond,
-                    IndividualCode = AutoIncrementalGuild.AutoIncremental(searchIfExist.Value)
-
-                };
-                if (familyfatherSearch == null)
-                {
-                    context.FamilyMembers.Add(familydb);
-                    context.SaveChanges();
-                }
+                IncrementalAndCheckFamilyMembers.AddFamilyMembersInDb(parentalcode, name, surname, parentalbond);
                 familyfatherSearch = context?.FamilyMembers?.FindAsync(parentalcode)?.Result.IndividualCode;
                 var familymotherdb = new FamilyMembers()
                 {
@@ -136,7 +106,7 @@ if (Console.ReadLine() != "SKIP")
                     Surname = surnamemother,
                     ParentalCode = parentalcode,
                     ParentalBond = parentalbond,
-                    IndividualCode = AutoIncrementalGuild.AutoIncremental(familyfatherSearch.Value)
+                    IndividualCode = IncrementalAndCheckFamilyMembers.AutoIncrementalGuild(familyfatherSearch.Value)
 
                 };
 
@@ -163,7 +133,7 @@ if (Console.ReadLine() != "SKIP")
                     Surname = surname,
                     ParentalCode = parentalcode,
                     ParentalBond = parentalbond,
-                    IndividualCode = AutoIncrementalGuild.AutoIncremental(searchIfExist.Value)
+                    IndividualCode = IncrementalAndCheckFamilyMembers.AutoIncrementalGuild(searchIfExist.Value)
                 };
 
                 if (searchIfExist == null)
@@ -209,7 +179,7 @@ if (Console.ReadLine() != "SKIP")
                     Surname = surname,
                     ParentalCode = parentalcode,
                     ParentalBond = parentalbond,
-                    IndividualCode = AutoIncrementalGuild.AutoIncremental(searchIfExist.Value)
+                    IndividualCode = IncrementalAndCheckFamilyMembers.AutoIncrementalGuild(searchIfExist.Value)
 
                 };
 
