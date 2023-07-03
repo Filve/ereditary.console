@@ -18,7 +18,7 @@ CREATE TABLE [dbo].[SupremeEntities](
 	[IndividualCode] [int] NOT NULL,
 	[ParentalBond] [nvarchar](250) NULL,
 	[ParentalCode] [int] NULL,
-	[CreationDate] [datetime] NOT NULL,
+	[CreationDate] [datetime] NULL,
 
  CONSTRAINT [PK_SupremeEntities] PRIMARY KEY CLUSTERED 
 (
@@ -42,7 +42,7 @@ CREATE TABLE [dbo].[FatherAndMother](
 	[ParentalCode] [int] NOT NULL,
 	[ParentalBond] [nvarchar](50) NULL,
 	[ParentalConnectionCode] [int] NOT NULL,
-	[CreationDate] [datetime] NOT NULL,
+	[CreationDate] [datetime] NULL,
 
  CONSTRAINT [PK_FatherAndMother] PRIMARY KEY CLUSTERED 
 (
@@ -69,7 +69,7 @@ CREATE TABLE [dbo].[Children](
 	[ParentalCode] [int] NOT NULL,
 	[ParentalConnectionCode] [int] NOT NULL,
 	[ParentalBond] [nvarchar](250) NULL,
-	[CreationDate] [datetime] NOT NULL,
+	[CreationDate] [datetime] NULL,
  CONSTRAINT [PK_Children] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -92,7 +92,7 @@ CREATE TABLE [dbo].[Wifes](
 	[IndividualCode] [int] NOT NULL,
 	[ParentalBond] [nvarchar](250) NOT NULL,
 	[ParentalConnectionCode] [int] NOT NULL,
-	[CreationDate] [datetime] NOT NULL,
+	[CreationDate] [datetime] NULL,
 
  CONSTRAINT [PK_Wifes] PRIMARY KEY CLUSTERED 
 (
@@ -116,7 +116,7 @@ CREATE TABLE [dbo].[HousbandAndWifeOfFamily](
 	[IndividualCode] [int] NOT NULL,
 	[ParentalBond] [nvarchar](250) NOT NULL,
 	[ParentalConnectionCode] [int] NOT NULL,
-	[CreationDate] [datetime] NOT NULL,
+	[CreationDate] [datetime] NULL,
  CONSTRAINT [PK_HousbandAndWifeOfFamily] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -136,9 +136,10 @@ CREATE TABLE [dbo].[FamilyMembers](
 	[Name] [nvarchar](250) NULL,
 	[Surname] [nvarchar](250) NULL,
 	[ParentalCode] [int] NOT NULL,
+	[IndividualCode] [int] NOT NULL,
 	[ParentalBond] [nvarchar](250) NOT NULL,
 	[ParentalConnectionCode] [int] NOT NULL,
-	[CreationDate] [datetime] NOT NULL,
+	[CreationDate] [datetime] NULL,
  CONSTRAINT [PK_FamilyMembers] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -158,9 +159,10 @@ CREATE TABLE [dbo].[FamilyMember](
 	[Name] [nvarchar](250) NULL,
 	[Surname] [nvarchar](250) NULL,
 	[ParentalCode] [int] NOT NULL,
+	[IndividualCode] [int] NOT NULL,
 	[ParentalBond] [nvarchar](250) NOT NULL,
 	[ParentalConnectionCode] [int] NOT NULL,
-	[CreationDate] [datetime] NOT NULL,
+	[CreationDate] [datetime] NULL,
  CONSTRAINT [PK_FamilyMember] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
