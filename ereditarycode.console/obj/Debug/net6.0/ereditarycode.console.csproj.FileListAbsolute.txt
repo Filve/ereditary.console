@@ -96,3 +96,11 @@ C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\refint\eredit
 C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\ereditarycode.console.pdb
 C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\ereditarycode.console.genruntimeconfig.cache
 C:\GitHub\ereditary.console\ereditarycode.console\obj\Debug\net6.0\ref\ereditarycode.console.dll
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\GitHub\ereditary.console\ereditarycode.console\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll

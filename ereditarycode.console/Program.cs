@@ -1,10 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ereditarycode.console;
 
-var find = new EredityModel();
+
+object find;
 var findDb = "";
 var findNumberOfParental = 0;
-
 Console.WriteLine("WRITE IN BLOCK MAIUSCLE 'SKIP' FOR FIND OR PRESS ENTER");
 
 if (Console.ReadLine() != "SKIP")
@@ -35,38 +35,30 @@ if (Console.ReadLine() != "SKIP")
     var parentalcode = Console.Read();
     findNumberOfParental = parentalcode;
 
+    var individualCode = 0;
+
     switch (swtch)
     {
         case "SupremeEntities":
-            using (var context = new Eredity())
+            using (var context = new DataContext())
             {
 
-                var searchIfExist = context?.FamilyMembers?.FindAsync(parentalcode)?.Result?.IndividualCode;
                 var db = new SupremeEntities()
                 {
                     Name = name,
                     Surname = surname,
                     ParentalCode = parentalcode,
-                    ParentalBond = parentalbond,
-                    IndividualCode = IncrementalAndCheckFamilyMembers.AutoIncrementalGuild(parentalcode)
-
+                    ParentalBond = parentalbond
                 };
 
-
-                if (searchIfExist == null)
-                {
-                    context.SupremeEntities.Add(db);
-                    context.SaveChanges();
-                }
-                else
-                    Console.WriteLine("Already Exist Parental Code");
+                context?.SupremeEntities.Add(db);
+                context?.SaveChanges();
 
 
-                searchIfExist = context?.SupremeEntities?.FindAsync(parentalcode)?.Result?.IndividualCode;
-                Console.WriteLine(searchIfExist.Value);
-                var familySearch = context?.FamilyMembers?.FindAsync(parentalcode)?.Result?.IndividualCode;
+                var familySearch = context?.FamilyMembers?.Find(db.IndividualCode);
 
-                IncrementalAndCheckFamilyMembers.AddFamilyMembersInDb(parentalcode, name, surname, parentalbond);
+                IncrementalAndCheckFamilyMembers.AddSupremeEntities(parentalcode, name, surname, parentalbond);
+
 
             }
             break;
@@ -75,11 +67,11 @@ if (Console.ReadLine() != "SKIP")
             var namemother = Console.ReadLine();
             Console.WriteLine("Write surname of mother OR press enter to skip");
             var surnamemother = Console.ReadLine();
-            using (var context = new Eredity())
+            using (var context = new DataContext())
             {
 
-                var searchIfExist = context?.FamilyMembers?.FindAsync(parentalcode)?.Result?.ParentalCode;
-                var db = new FaterAndMother()
+                var searchIfExist = context?.SupremeEntities?.FindAsync(parentalcode)?.Result?.ParentalCode;
+                var db = new FaterAndMotherOriginally()
                 {
                     FatherCompleteName = name + " " + surname,
                     MotherCompleteName = namemother + " " + surnamemother,
@@ -91,14 +83,14 @@ if (Console.ReadLine() != "SKIP")
 
                 if (searchIfExist == null)
                 {
-                    context?.FaterAndMother?.Add(db);
+                    context?.FaterAndMotherOriginally?.Add(db);
                     context?.SaveChangesAsync();
                 }
                 else
                     Console.WriteLine("Already Exist Parental Code");
-                searchIfExist = context?.FaterAndMother?.FindAsync(parentalcode).Result?.Id;
+                searchIfExist = context?.FaterAndMotherActual?.FindAsync(parentalcode).Result?.Id;
                 var familyfatherSearch = context?.FamilyMembers?.FindAsync(parentalcode)?.Result?.IndividualCode;
-                IncrementalAndCheckFamilyMembers.AddFamilyMembersInDb(parentalcode, name, surname, parentalbond);
+                AddFamilyMembersInDb(parentalcode, name, surname, parentalbond);
                 familyfatherSearch = context?.FamilyMembers?.FindAsync(parentalcode)?.Result.IndividualCode;
                 var familymotherdb = new FamilyMembers()
                 {
@@ -106,7 +98,7 @@ if (Console.ReadLine() != "SKIP")
                     Surname = surnamemother,
                     ParentalCode = parentalcode,
                     ParentalBond = parentalbond,
-                    IndividualCode = IncrementalAndCheckFamilyMembers.AutoIncrementalGuild(familyfatherSearch.Value)
+                    IndividualCode = AutoIncrementalGuild(familyfatherSearch.Value)
 
                 };
 
@@ -124,7 +116,7 @@ if (Console.ReadLine() != "SKIP")
 
             break;
         case "Children":
-            using (var context = new Eredity())
+            using (var context = new DataContext())
             {
                 var searchIfExist = context?.FamilyMembers?.FindAsync(parentalcode)?.Result?.ParentalCode;
                 var db = new Children()
@@ -170,7 +162,7 @@ if (Console.ReadLine() != "SKIP")
             }
             break;
         case "HousbandAndWifeOfFamily":
-            using (var context = new Eredity())
+            using (var context = new DataContext())
             {
                 var searchIfExist = context?.FamilyMembers?.FindAsync(parentalcode)?.Result?.IndividualCode;
                 var db = new HousbandAndWifeOfFamily()
@@ -237,94 +229,77 @@ else
 }
 
 
-var findcontext = new Eredity();
+var findcontext = new DataContext();
 
 
 switch (findDb)
 {
     case "SupremeEntities":
-        find = new EredityModel()
+        var context = findcontext.SupremeEntities.FindAsync(findNumberOfParental).Result;
+        find = new SupremeEntities()
         {
-            SupremeEntity = new SupremeEntities()
-            {
-                Name = findcontext.SupremeEntities.FindAsync(findNumberOfParental).Result.Name,
-                Surname = findcontext.SupremeEntities.FindAsync(findNumberOfParental).Result.Surname,
-                ParentalCode = findcontext.SupremeEntities.FindAsync(findNumberOfParental).Result.ParentalCode,
-                CreationDate = findcontext.SupremeEntities.FindAsync(findNumberOfParental).Result.CreationDate,
-                ParentalBond = findcontext.SupremeEntities.FindAsync(findcontext).Result.ParentalBond,
-            },
+            Name = context.Name,
+            Surname = findcontext.SupremeEntities.FindAsync(findNumberOfParental).Result.Surname,
+            ParentalCode = findcontext.SupremeEntities.FindAsync(findNumberOfParental).Result.ParentalCode,
+            CreationDate = findcontext.SupremeEntities.FindAsync().Result.CreationDate,
+            ParentalBond = findcontext.SupremeEntities.FindAsync(findcontext).Result.ParentalBond,
         };
-        Console.WriteLine(find.SupremeEntity);
+        Console.WriteLine(find);
         break;
     case "FaterAndMother":
-        find = new EredityModel()
+        find = new FaterAndMotherOriginally()
         {
-            FatherAndMother = new FaterAndMother()
-            {
-                FatherCompleteName = findcontext.FaterAndMother.FindAsync(findNumberOfParental).Result.FatherCompleteName,
-                MotherCompleteName = findcontext.FaterAndMother.FindAsync(findNumberOfParental).Result.MotherCompleteName,
-                ParentalCode = findcontext.FaterAndMother.FindAsync(findNumberOfParental).Result.ParentalCode,
-                CreationDate = findcontext.FaterAndMother.FindAsync(findNumberOfParental).Result.CreationDate,
-                ParentalBond = findcontext.FaterAndMother.FindAsync(findcontext).Result.ParentalBond,
-            },
+            FatherCompleteName = findcontext.FaterAndMotherOriginally.FindAsync(findNumberOfParental).Result.FatherCompleteName,
+            MotherCompleteName = findcontext.FaterAndMotherOriginally.FindAsync(findNumberOfParental).Result.MotherCompleteName,
+            ParentalCode = findcontext.FaterAndMotherOriginally.FindAsync(findNumberOfParental).Result.ParentalCode,
+            CreationDate = findcontext.FaterAndMotherOriginally.FindAsync(findNumberOfParental).Result.CreationDate,
+            ParentalBond = findcontext.FaterAndMotherOriginally.FindAsync(findcontext).Result.ParentalBond,
         };
-        Console.WriteLine(find.FatherAndMother);
+        Console.WriteLine(find);
         break;
     case "Children":
-        find = new EredityModel()
+        find = new Children()
         {
-            Children = new Children()
-            {
-                Name = findcontext.Children.FindAsync(findNumberOfParental).Result.Name,
-                Surname = findcontext.Children.FindAsync(findNumberOfParental).Result.Surname,
-                ParentalCode = findcontext.Children.FindAsync(findNumberOfParental).Result.ParentalCode,
-                CreationDate = findcontext.Children.FindAsync(findNumberOfParental).Result.CreationDate,
-                ParentalBond = findcontext.Children.FindAsync(findcontext).Result.ParentalBond,
-            },
+            Name = findcontext.Children.FindAsync(findNumberOfParental).Result.Name,
+            Surname = findcontext.Children.FindAsync(findNumberOfParental).Result.Surname,
+            ParentalCode = findcontext.Children.FindAsync(findNumberOfParental).Result.ParentalCode,
+            CreationDate = findcontext.Children.FindAsync(findNumberOfParental).Result.CreationDate,
+            ParentalBond = findcontext.Children.FindAsync(findcontext).Result.ParentalBond,
         };
-        Console.WriteLine(find.Children);
+        Console.WriteLine(find);
         break;
     case "Wifes":
-        find = new EredityModel()
+        find = new Wifes()
         {
-            Wifes = new Wifes()
-            {
-                Name = findcontext.Wifes.FindAsync(findNumberOfParental).Result.Name,
-                Surname = findcontext.Wifes.FindAsync(findNumberOfParental).Result.Surname,
-                ParentalCode = findcontext.Wifes.FindAsync(findNumberOfParental).Result.ParentalCode,
-                CreationDate = findcontext.Wifes.FindAsync(findNumberOfParental).Result.CreationDate,
-                ParentalBond = findcontext.Wifes.FindAsync(findcontext).Result.ParentalBond,
-            },
+            Name = findcontext.Wifes.FindAsync(findNumberOfParental).Result.Name,
+            Surname = findcontext.Wifes.FindAsync(findNumberOfParental).Result.Surname,
+            ParentalCode = findcontext.Wifes.FindAsync(findNumberOfParental).Result.ParentalCode,
+            CreationDate = findcontext.Wifes.FindAsync(findNumberOfParental).Result.CreationDate,
+            ParentalBond = findcontext.Wifes.FindAsync(findcontext).Result.ParentalBond,
         };
-        Console.WriteLine(find.Wifes);
+        Console.WriteLine(find);
         break;
     case "HousbandAndWifeOfFamily":
-        find = new EredityModel()
+        find = new HousbandAndWifeOfFamily()
         {
-            HousbandAndWifeOfFamily = new HousbandAndWifeOfFamily()
-            {
-                Name = findcontext.HousbandAndWifeOfFamily.FindAsync(findNumberOfParental).Result.Name,
-                Surname = findcontext.HousbandAndWifeOfFamily.FindAsync(findNumberOfParental).Result.Surname,
-                ParentalCode = findcontext.HousbandAndWifeOfFamily.FindAsync(findNumberOfParental).Result.ParentalCode,
-                CreationDate = findcontext.HousbandAndWifeOfFamily.FindAsync(findNumberOfParental).Result.CreationDate,
-                ParentalBond = findcontext.HousbandAndWifeOfFamily.FindAsync(findcontext).Result.ParentalBond,
-            },
+            Name = findcontext.HousbandAndWifeOfFamily.FindAsync(findNumberOfParental).Result.Name,
+            Surname = findcontext.HousbandAndWifeOfFamily.FindAsync(findNumberOfParental).Result.Surname,
+            ParentalCode = findcontext.HousbandAndWifeOfFamily.FindAsync(findNumberOfParental).Result.ParentalCode,
+            CreationDate = findcontext.HousbandAndWifeOfFamily.FindAsync(findNumberOfParental).Result.CreationDate,
+            ParentalBond = findcontext.HousbandAndWifeOfFamily.FindAsync(findcontext).Result.ParentalBond,
         };
-        Console.WriteLine(find.HousbandAndWifeOfFamily);
+        Console.WriteLine(find);
         break;
     case "FamilyMembers":
-        find = new EredityModel()
+        find = new FamilyMember()
         {
-            FamilyMembers = new FamilyMember()
-            {
-                Name = findcontext.FamilyMembers.FindAsync(findNumberOfParental).Result.Name,
-                Surname = findcontext.FamilyMembers.FindAsync(findNumberOfParental).Result.Surname,
-                ParentalCode = findcontext.FamilyMembers.FindAsync(findNumberOfParental).Result.ParentalCode,
-                CreationDate = findcontext.FamilyMembers.FindAsync(findNumberOfParental).Result.CreationDate,
-                ParentalBond = findcontext.FamilyMembers.FindAsync(findcontext).Result.ParentalBond,
-            },
+            Name = findcontext.FamilyMembers.FindAsync(findNumberOfParental).Result.Name,
+            Surname = findcontext.FamilyMembers.FindAsync(findNumberOfParental).Result.Surname,
+            ParentalCode = findcontext.FamilyMembers.FindAsync(findNumberOfParental).Result.ParentalCode,
+            CreationDate = findcontext.FamilyMembers.FindAsync(findNumberOfParental).Result.CreationDate,
+            ParentalBond = findcontext.FamilyMembers.FindAsync(findcontext).Result.ParentalBond,
         };
-        Console.WriteLine(find.FamilyMembers);
+        Console.WriteLine(find);
         break;
 }
 
